@@ -36,9 +36,6 @@ def get_win_slices():
 
 WIN_PATTERNS = get_win_slices()
 
-def get_valid_actions(active_pos):
-   return [i for i in range(N) if active_pos[i]<N]
-
 def get_valid_states(valid_actions, next_states):
   return [next_states[i] for i in valid_actions]
 
@@ -65,7 +62,6 @@ def select_eps_greedy(values, valid_actions, next_states, player_one):
     valid_states = get_valid_states(valid_actions, next_states)
     state_values = get_state_values(values, valid_states)
     return valid_actions[get_extreme_index(state_values, player_one)]
-
 
 def play_game(board, active_pos, idxs, values, children):
 
@@ -95,3 +91,15 @@ def play_game(board, active_pos, idxs, values, children):
 
   return (check_win(board, WIN_PATTERNS), visit_idxs)
 
+  if __name__ == "__main__":
+    NSIM = 10
+    idxs, values, children = init_game_tree()
+    for i in range(NSIM):
+
+      board, active_pos = init_board()
+
+      w, visit_idxs = play_game(board, active_pos, idxs, values, children)
+      update_values_mc(values, visit_idxs, w, 0.95)
+      print("game completed in " + str(len(visit_idxs)) + " moves")
+      print(w)
+      print(values)
