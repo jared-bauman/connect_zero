@@ -1,3 +1,6 @@
+import numpy as np
+import random
+
 class GameTree:
   def __init__(self, N):
     # board index lookup
