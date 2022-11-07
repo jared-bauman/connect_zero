@@ -2,6 +2,9 @@ import numpy as np
 import random
 
 class GameTree:
+  VALUE_IDX = 0
+  COUNT_IDX = 1
+  
   def __init__(self, N):
     # board index lookup
     self.idxs = {}
