@@ -8,7 +8,7 @@ class Board:
     self.active_pos = np.array([0]*N) # column position counter
 
   def check_win(self):
-    for s in WIN_PATTERNS:
+    for s in self.WIN_PATTERNS:
       t = np.sum(self.board[s])
       if t==4:
         return 1
@@ -18,10 +18,10 @@ class Board:
 
   def place(self, x, player_one):
     assert 0<=x<self.N
-    y = active_pos[x]
-    assert 0<=y<N
-    board[(self.N-1)-y+x*self.N] = (1 if player_one else -1)
-    active_pos[x] += 1
+    y = self.active_pos[x]
+    assert 0<=y<self.N
+    self.board[(self.N-1)-y+x*self.N] = (1 if player_one else -1)
+    self.active_pos[x] += 1
 
   def print_board(self):
-    print(np.transpose(np.reshape(board,(self.N,self.N))))
+    print(np.transpose(np.reshape(self.board,(self.N,self.N))))
