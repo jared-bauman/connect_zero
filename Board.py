@@ -1,3 +1,5 @@
+import numpy as np
+
 class Board:
   def __init__(self, N, WIN_PATTERNS):
     self.N = N
