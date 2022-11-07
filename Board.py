@@ -22,6 +22,9 @@ class Board:
     assert 0<=y<self.N
     self.board[(self.N-1)-y+x*self.N] = (1 if player_one else -1)
     self.active_pos[x] += 1
+    
+  def get_valid_actions(self):
+    return [i for i in range(self.N) if self.active_pos[i]<self.N]
 
   def print_board(self):
     print(np.transpose(np.reshape(self.board,(self.N,self.N))))
