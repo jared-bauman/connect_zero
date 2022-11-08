@@ -2,14 +2,7 @@ import numpy as np
 import random
 
 N=7 # number of rows and columns
-DF=4 # degrees of freedom in positioning streaks
 EPS=0.01 # exploration probability
-
-def get_valid_states(valid_actions, next_states):
-  return [next_states[i] for i in valid_actions]
-
-def get_state_values(values, valid_states):
-  return [0 if i == -1 else values[i][VALUE_IDX] for i in valid_states]
 
 def get_uniform_action(k):
   return random.randrange(start=0, stop=k)
