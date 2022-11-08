@@ -34,7 +34,7 @@ class Board:
   
   def __init__(self, N):
     self.N = N
-    self.WIN_PATTERNS = get_win_patterns()
+    self.WIN_PATTERNS = self.get_win_patterns(N)
     self.board = np.array([0]*N*N) # board representation
     self.active_pos = np.array([0]*N) # column position counter
 
@@ -59,3 +59,10 @@ class Board:
 
   def print_board(self):
     print(np.transpose(np.reshape(self.board,(self.N,self.N))))
+
+  def visualize_win_conditions(self):
+    for s in self.WIN_PATTERNS:
+      board = np.array([0]*self.N*self.N)
+      board[s] = 1
+      print(np.transpose(np.reshape(board,(self.N,self.N))))
+      print('\n')
