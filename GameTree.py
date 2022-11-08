@@ -20,6 +20,15 @@ class GameTree:
       self.idxs[c] = len(self.idxs)
       self.children.append(np.array([-1]*N))
       self.values.append(np.array([0.,0]))
+      
+  def get_valid_states(valid_actions, p_idx):
+    assert p_idx in self.children
+    next_states = self.children[p_idx]
+    return [next_states[i] for i in valid_actions]
+
+  def get_state_values(valid_actions, p_idx):
+    valid_states = self.get_valid_states(valid_actions, p_idx)
+    return [0 if i == -1 else self.values[i][GameTree.VALUE_IDX] for i in valid_states]
 
   def update_values_mc(self, visit_idxs, w, gamma=1.0):
     decay = 1.0
