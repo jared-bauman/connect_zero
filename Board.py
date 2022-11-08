@@ -2,7 +2,8 @@ import numpy as np
 
 class Board:
   
-  def get_win_patterns(self):
+  def get_win_patterns(self, N):
+    DF = (N-4)+1
     s0 = np.array([0, 1, 2, 3]) # vertical
     s1 = np.array([0, N, 2*N, 3*N]) # horizontal
     s2 = np.array([0, N+1, 2*N+2, 3*N+3]) # positive slope
@@ -36,8 +37,6 @@ class Board:
     self.WIN_PATTERNS = get_win_patterns()
     self.board = np.array([0]*N*N) # board representation
     self.active_pos = np.array([0]*N) # column position counter
-    
-    
 
   def check_win(self):
     for s in self.WIN_PATTERNS:
