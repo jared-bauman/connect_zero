@@ -5,37 +5,6 @@ N=7 # number of rows and columns
 DF=4 # degrees of freedom in positioning streaks
 EPS=0.01 # exploration probability
 
-def get_win_slices():
-  s0 = np.array([0, 1, 2, 3]) # vertical
-  s1 = np.array([0, N, 2*N, 3*N]) # horizontal
-  s2 = np.array([0, N+1, 2*N+2, 3*N+3]) # positive slope
-  s3 = np.array([3, N+2, 2*N+1, 3*N]) # negative slope
-
-  slices = []
-  # add vertical slices
-  for i in range(DF):
-    for j in range(N):
-      slices.append(s0 + i + N*j)
-
-  # add horizontal slices
-  for i in range(N):
-    for j in range(DF):
-      slices.append(s1 + i + N*j)
-
-  # add upward slopes
-  for i in range(DF):
-    for j in range(DF):
-      slices.append(s2 + i + N*j)
-
-  # add downward slopes
-  for i in range(DF):
-    for j in range(DF):
-      slices.append(s3 + i + N*j)
-
-  return slices
-
-WIN_PATTERNS = get_win_slices()
-
 def get_valid_states(valid_actions, next_states):
   return [next_states[i] for i in valid_actions]
 
